@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Species</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="./home.css">
+</head>
+<body>
+      <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <ul class="nav navbar-nav">
+                    <li role="presentation"><a href="/">Home</a></li>
+
+                    <li role="presentation"><a href="/pets">Pets</a></li>
+                    <li role="presentation"><a href="/adopters">Adopters</a></li>
+                    <li role="presentation"><a href="/accessories">Accessories</a></li>
+		    <li role="presentation" class="active"><a href="/species">Species</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="container">
+	<div class="jumbotron">
+	    <h1>Species</h1>
+        </div>
+
+	<h3>Add New Specie:</h3>
+	<form id="addAccessory" action = "/species" method="post">
+	    <div class="form-group">
+		<label for="species">Specie Name:</label> 
+		<input type="text" name="name" id="species">
+	    </div>
+	    <input class="btn btn-primary" type="submit" value="Submit">
+	</form>
+	<br/>
+	<h3>Would you like to add a specie for an accessory?</h3>
+	<a class="btn btn-primary" href="/isFor">Yes</a>
+	<br/>
+	<h3>List of all Species:</h3>
+	<table class="table table-striped">
+		<thead>
+		    <tr>
+			<th scope="col">ID</th>
+			<th scope="col">Name</th>
+		</thead>
+		<tbody>
+			{{#each species}}
+			<tr>
+				<th scope="row">{{id}}</th>
+				<td>{{name}}</td>
+			</tr>
+			{{/each}}
+		</tbody>
+	</table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!doctype html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Pets</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/home.css">
+</head>
+<body>
+      <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <ul class="nav navbar-nav">
+                    <li role="presentation"><a href="/">Home</a></li>
+
+                    <li role="presentation" class="active"><a href="/pets">Pets</a></li>
+                    <li role="presentation"><a href="/adopters">Adopters</a></li>
+                    <li role="presentation"><a href="/accessories">Accessories</a></li>
+		    <li role="presentation"><a href="/species">Species</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="container">
+	<div class="jumbotron">
+	    <h1>Pets</h1>
+        </div>
+	<form id="filter_pets" action="" method="">
+	    <div class="form-group">
+		<label for="species_filter">Filter Pets by Species</label>
+		<select class="form-control" id="species_filter" name="species">
+			{{#each species}}
+			<option value="{{id}}">{{name}}</option>
+			{{/each}}
+		</select>
+	    </div>
+	    <input type="button" value="Filter" class="btn btn-primary" onclick="filterPetsBySpecies()">
+	</form>
+	<br>
+	<h3>Add New Pets:</h3>
+	<form id="addPets" action = "/pets" method="post">
+	    <div class="form-group">
+		<label for="name">Pet Name:</label> 
+		<input type="text" name="name" id="name">
+	    </div>
+	    <div class="form-group">
+		<label for="birthdate">Birthdate:</label> 
+		<input type="date" class="form-control" name="birthdate" id="birthdate">
+	    </div>
+	    <div class="form-group">
+		<label for="species">Species:</label> 
+		<select class="form-control" name="specie" id="species">
+				{{#each species}}
+				<option value="{{id}}">{{name}}</option>
+				{{/each}}
+		</select>
+	    </div>
+	    <button type="submit" class="btn btn-primary">Submit</button>
+	</form>
+	<br>
+	<h4>Is an adopter interested in this pet?</h4>
+		<a class="btn btn-primary" href="/adopters2">Yes</a></button> 
+	<br/>
+	<h3>Current Pets:</h3>
+	<table class="table table-striped">
+		<thead>
+		    <tr>
+			<th scope="col">ID</th>
+			<th scope="col">Name</th>
+			<th scope="col">Birthdate</th>
+			<th scope="col">Species</th>
+			
+		    </tr>
+		</thead>
+		<tbody>
+			{{#each pets}}
+			<tr>
+				<th scope="row">{{id}}</th>
+				<td>{{name}}</td>
+				<td>{{birthdate}}</td>
+				<td>{{specie}}<td>
+				<td>
+				    <button type="button" class="btn btn-danger" onclick="deletePet({{id}})">Delete</button>
+				</td>
+			</tr>
+			{{/each}}
+		</tbody>
+	</table>
+    </div>
+</body>
+</html>
